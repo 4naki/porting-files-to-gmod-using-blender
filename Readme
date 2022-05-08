@@ -1,0 +1,174 @@
+Hello, this is your host naki. I shall be guiding you how to import models to gmod using blender with source tools, vtfedit and crowbar.
+
+This tutorial is wip, and more example files and info will be added later, for now if you need more help than this guide provies, google exists and ofc valve's website
+https://developer.valvesoftware.com/wiki/Main_Page
+
+
+1. You need blender and source tools blender extension
+Blender (Blender's own website): https://www.blender.org/ 
+Blender (Valve's website): https://developer.valvesoftware.com/wiki/Blender
+Blender Source Tools: https://developer.valvesoftware.com/wiki/Blender_Source_Tools
+
+
+2. To create and edit gmod's material files we need VTFEdit
+VTFEdit: https://developer.valvesoftware.com/wiki/VTFEdit
+
+
+3. For compiling the model we will need Crowbar
+Crowbar: https://developer.valvesoftware.com/wiki/Crowbar
+
+
+4. Setup VTFEdit, Crowbar and Blender
+You don't need anything specific settings for these, so continue with the instructions in the installers.
+
+
+5. Install the source tools extension
+To do this you will click "Edit" at the top left corner of blender window and select "Preferences..."
+A panel will pop up, top right of it there is an arrow down icon with "Install..." click that and find your source tools.zip file
+Select it and give it a second to load, when it's done loading everything else on the list should be "hidden" and the only thing you can see is source tools
+Click the little empty checkbox to turn it on, you have now installed and enabled source tools
+
+
+6. Exporting your model to .smd file for Crowbar
+Start by getting your model ready in blender, after that you want to open "Scene Properties" which can be found on the right of blender (icon with a cone, and 2 balls one of these is hollow)
+Set your export path and Export Format to "SMD"
+For your materials/textures you want to rename them in blender to what you want them to be called, for example using "wood" would be better instead of something like "mat01"
+When you are done with all that you can click "Export" above "Export Path"
+
+
+7. QC compiling code for Crowbar
+I have included example .qc file in examples.zip download that or make your own .qc file
+
+Your QC file should look something like this
+
+$modelname "NameOfTheModel.mdl"
+
+$scale 1
+
+$bodygroup "NameOfTheModel"
+{
+	studio "nameofthemodel.smd"
+}
+
+$surfaceprop "plastic"
+
+$contents "solid"
+
+$cdmaterials "models\"
+
+$cbox 0 0 0 0 0 0
+
+$bbox 0 0 0 0 0 0
+
+$sequence "Idle" {
+	"nameofthemodel.smd"
+	activity "ACT_IDLE" 1
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+}
+
+I am not entirely sure if the model name cares about capital letters so recommend using my example or make your own if you know what to do
+
+Replace "NameOfTheModel" with the name of your model you can also make it like this i believe (keep the "")
+
+$modelname "Model Name In Spawn Menu" "NameOfTheModel.mdl"
+
+the .smd file name needs to be the same as your .smd file's
+
+studio "nameofthemodel.smd"
+
+After your QC file is done, open Crowbar and move on to next step
+
+
+8. Compiling your model with Crowbar
+Go to "Compile" tab
+First select your "QC input" file and "output to" folder
+
+Next if everything is ready you can click "Compile"
+Your models should have been compiled and moved to the "output to" folder
+
+
+9. Creating materials
+By now you should've downloaded my example files, take the .vtm and .vtf files and throw them somewhere, we will need them now
+
+Open your .vmt file and change the "example" in "$basetexture" "models/example" to what your material name is
+It should look like this for example "$basetexture" "models/wood" instead of "$basetexture" "models/example"
+
+Now open the .vtf file, click "File" and select "Import" a file browser opens up, find your texture/material/image file and select it.
+After selecting it, another panel opens up, you don't want to change anything here, just proceed.
+
+After importing your image file you want to save it, you should save it as something like "wood.vtf" to the same location where the .vmt file is
+
+
+10. Final touches
+Now we need to set up our folders, go into garry's mod/garry's mod/addons and create a folder that you want your addon to be called.
+Into that folder create 2 more folders, "models" and "materials", into the folder "models" you want to throw the compiled model files that we got from crowbar
+Into "materials" you want to create another folder "models" throw your material files here, .vtf and .vmt
+
+This is a very basic and good file structure for learning purposes, for better look you can use something like "materials/models/your name here/name of the model", note that this will require editing of the qc file
+
+
+11. Try your model in Garry's Mod
+This is all that's left, your model should be imported properly with materials/textures
+
+
+
+
+Other useful tools:
+
+GIMP or Photoshop for editing and creating textures
+Any kinds of blender extensions that might help you to "smoothen" your model
+
+Valve's website for more info and settings you can use for your .qc files and .vmt files
+
+
+
+
+
+!!! TROUBLESHOOTING !!!
+!!! In case you ran into some issues check over here !!!
+
+
+1. Blender related issues
+
+Random error when trying to export, first you want to make sure your blender is up to date, same for source tools, next check the notes/comments of the source tools in case the blender version is not compatible for example.
+
+
+2. Crowbar related issues
+
+First and most important thing, your qc file everything depends on it, you will get errors if the name of your .smd file does not match what you have in your qc file, this is why you should use the example i provided
+Another thing you can do is replace spaces with _ or -
+
+After checking that save your qc file and try compiling again, next start checking everything in your qc file, grammar mistakes etc, even the slightest mistake will cause it to not compile correctly/result in error
+
+3. .vmt file won't open
+
+First you can open your .vmt file by clicking "edit" or "open with..." and selecting notepad for example
+
+make sure your file path has "", for example 
+
+"$basetexture" "models/example"
+
+instead of 
+
+"$basetexture" models/example
+
+Note: 
+
+removing "" from "$basetexture" should work, same for this "VertexLitGeneric", also there are a lot of different settings you can use with it such as $phong etc, more info on valve's website
+
+This will also result into materials not applying onto your models, see below
+
+
+4. Materials not applying onto models
+First thing we want to check is your material's name, we set this in your blender part of the guide, see above
+
+If the material name does not match with your .vtf and .vmt file name it won't be able to load the material obviously, so make sure that's correct
+
+If this issue is still happening check if you can open your .vmt file, if not, see issue 3. above
+
+
+5. Model is too small
+$scale can be used for this, for editing your model in gmod, recommend checking out PAC3, rescale your model to the right size and use that number in $scale
