@@ -1,1 +1,37 @@
+All tools that you could need listed below
 
+Important: 
+https://videogamemods.com/xenoverse/mods/xenoviewer-v2-libxenoverse/          <- Used to view the models, useful in case you don't know what each model looks like
+https://videogamemods.com/xenoverse/mods/emdfbx-and-fbxemd-libxenoverse/          <- Used to convert xv2's .emd files to fbx, includes animations
+https://videogamemods.com/xenoverse/mods/cpk-browser-view-and-extract-files/          <- Used to decompile the game's .cpk game files, these include anything you need, such as character models
+
+Possibly important:
+https://videogamemods.com/xenoverse/mods/eternity-tools/            <- Collection of tools for modding XV2
+
+Other tools:
+Blender
+https://www.blender.org/
+
+Source Tools, Blender addon (With this you can switch animations easily and extract them to .smd for gmod)
+https://developer.valvesoftware.com/wiki/Blender_Source_Tools
+
+Gimp:
+https://www.gimp.org/
+
+
+Now to start this tutorial, you want to unpack your "data.cpk" in "DB Xenoverse 2\cpk" by opening cpk browser,
+clicking "open cpk" and selecting your cpk, then either tools and extract all, or right click a folder like "chara" and select extract folder
+
+Note you can also open .x2m files using winrar for example, and extract the model files from there too
+
+Next, you should find all kinds of random letter named folders, if you are in "chara" folder that is, those are just the names of the characters but shortened, full list of them is here
+https://docs.google.com/spreadsheets/d/1SyHP2fns9w_ovq96eiLejxZBngo2cYbsNxC9fo9YH5w/edit#gid=291233767
+
+You are looking for .emd files, drop those into the emdfbx.exe in the libxenoverse_emdfbx_vX_X_X
+
+That should give you .fbx files of the models
+
+Now materials, those are tricky, the materials so far export themselfs as .dds and they are transparent and they have no color, so gimp is recommended for example
+First you remove the alpha channel, aka make the image not to be transparent, then you just recolor it, it's a semi long process, but exporting each animation one by one is still worse
+
+Now continue my tutorial on how to import models to gmod using blender
