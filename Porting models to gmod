@@ -72,9 +72,7 @@ $sequence "Idle" {
 
 I am not entirely sure if the model name cares about capital letters so recommend using my example or make your own if you know what to do
 
-Replace "NameOfTheModel" with the name of your model you can also make it like this i believe (keep the "")
-
-$modelname "Model Name In Spawn Menu" "NameOfTheModel.mdl"
+Replace "NameOfTheModel" with the name of your model
 
 the .smd file name needs to be the same as your .smd file's
 
@@ -115,6 +113,7 @@ This is a very basic and good file structure for learning purposes, for better l
 This is all that's left, your model should be imported properly with materials/textures
 
 
+!!!Animations at the bottom!!!
 
 
 Other useful tools:
@@ -173,3 +172,24 @@ If this issue is still happening check if you can open your .vmt file, if not, s
 
 5. Model is too small
 $scale can be used for this, for editing your model in gmod, recommend checking out PAC3, rescale your model to the right size and use that number in $scale
+
+
+
+!!Animations!!
+
+This is literally the same as exporting a model, you just select the animation and click export, it will create it's own folder for it like this "set folder/anims"
+
+Now in the .qc file you need to have one of these
+
+
+$sequence "Animation_Name" {
+	"NameOfTheAnimationFile.smd"
+	fadein 0.2
+	fadeout 0.2
+	fps 30
+	loop
+}
+
+Now animations can have "loop" in case you want them to loop
+
+For each animation you have, you need to have one of these with the correct information, Good Luck
